@@ -31,8 +31,8 @@ class Recipe extends React.Component {
                     {/* <Ingredient name="Carrot"/> */}
                 </h3>
                 {
-                    this.props.data.ingr.map((i) => (
-                        <p>{i}</p>
+                    this.props.data.ingr.map((i, index) => (
+                        <p key={index}>{i}</p>
                     ))
                 }
             </div>

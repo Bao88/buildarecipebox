@@ -84,8 +84,8 @@ class RecipeBox extends React.Component {
                 <div id="recipebox">   
                     {/* <Recipe data={rec}/> */}
                     {
-                        this.state.showRecipes.map((rec) => (
-                            <Recipe data={rec} />
+                        this.state.showRecipes.map((rec, index) => (
+                            <Recipe key={index} data={rec} />
                         ))
                     }
                 </div>
