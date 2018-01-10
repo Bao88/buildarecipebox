@@ -28,13 +28,22 @@ class RecipeForm extends React.Component {
 }
 
 class RecipeBox extends React.Component {
+    constructor(props){
+        super(props);
 
-    state = {
-        name: "",
-        list: [],
-        showform: false,
-        showRecipes: [{name: "Carrot Stew", ingr: ["Carrot", "Water"]}]
-    };
+        // restore data from localstorage if possible and use them
+        var storage = JSON.parse(localStorage.getItem("recipe"));
+        console.log(storage);
+        if(storage == null) storage = [];
+
+        this.state = {
+            name: "",
+            list: [],
+            showform: false,
+            showRecipes: storage
+        };
+    }
+   
 
     addRecipe = (event) => {
         // alert(event.target);
@@ -43,6 +52,9 @@ class RecipeBox extends React.Component {
         tmpArray.push(object);
         this.setState({showRecipes: tmpArray});
         
+// save to localStorage
+localStorage.setItem("recipe", JSON.stringify(tmpArray));
+
         // Reset the fields
         event.target.reset();
         event.preventDefault();
@@ -93,6 +105,10 @@ class RecipeBox extends React.Component {
             </div>
         );
     }
+}
+
+window.onbeforeunload = function(){
+
 }
 
 ReactDOM.render(<RecipeBox />, document.getElementById('root'));
