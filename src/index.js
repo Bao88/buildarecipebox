@@ -39,14 +39,15 @@ class RecipeBox extends React.Component {
     addRecipe = (event) => {
         // alert(event.target);
         var object = {name: this.state.name, ingr: this.state.list};
-        var tmpArray = this.state.list.slice();
+        var tmpArray = this.state.showRecipes;
         tmpArray.push(object);
         this.setState({showRecipes: tmpArray});
         
         // Reset the fields
         event.target.reset();
         event.preventDefault();
-        console.log(Object.keys(this.state.showRecipes));
+        console.log(tmpArray);
+        console.log(this.state.showRecipes);
     }
 
     addName = (event) => {
