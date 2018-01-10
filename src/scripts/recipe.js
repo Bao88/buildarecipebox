@@ -25,7 +25,7 @@ class Recipe extends React.Component {
         console.log("Recipe ");
 
         return (
-            <div className="recipe">
+            <div>
                 <div className="titleS">{this.props.data.name}</div>
                 <h3 className="hideI">Ingredients
                     {/* <Ingredient name="Carrot"/> */}

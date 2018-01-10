@@ -7,7 +7,7 @@ class RecipeForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.props.onSubmit} id="form">
-                <h1>Add a Recipe</h1>
+                <h1>{this.props.name}</h1>
                 <label>
                     <div>
                         Recipe
@@ -40,7 +40,8 @@ class RecipeBox extends React.Component {
             name: "",
             list: [],
             showform: false,
-            showRecipes: storage
+            showRecipes: storage,
+            recipeForm: false
         };
     }
    
@@ -53,7 +54,7 @@ class RecipeBox extends React.Component {
         this.setState({showRecipes: tmpArray});
         
 // save to localStorage
-localStorage.setItem("recipe", JSON.stringify(tmpArray));
+        localStorage.setItem("recipe", JSON.stringify(tmpArray));
 
         // Reset the fields
         event.target.reset();
@@ -83,25 +84,35 @@ localStorage.setItem("recipe", JSON.stringify(tmpArray));
         document.getElementById("overlay").style.display = "none";
     }
 
-    render(){
-        // const myArray = Array.from(this.state.showRecipes);
-        // console.log(this.state.showRecipes);
-        // const myList = myArray.map((ob, index) =>
-        //     <Recipe name={ob.name} />
-        // );
+    removeRecipe = (event) => {
+        // var object = {name: this.state.name, ingr: this.state.list};
+        var tmpArray = this.state.showRecipes;
+        tmpArray.splice(event.target.id.charAt(1), 1);
+        this.setState({showRecipes: tmpArray});
+        
+// update localStorage
+        localStorage.setItem("recipe", JSON.stringify(tmpArray));
 
+        console.log(event.target.id.charAt(1));
+        
+    }
+
+    render(){
         return (
             <div>
-                { this.state.showform ? <RecipeForm onSubmit={this.addRecipe} closeM = {this.closeForm} addN={this.addName} addI={this.addIngredients}/> : null}
+                { this.state.showform ? <RecipeForm name="Add a Recipe" onSubmit={this.addRecipe} closeM = {this.closeForm} addN={this.addName} addI={this.addIngredients}/> : null}
                 <div id="recipebox">   
-                    {/* <Recipe data={rec}/> */}
                     {
                         this.state.showRecipes.map((rec, index) => (
-                            <Recipe key={index} data={rec} />
+                            <div className="recipe" key={index} >
+                                <Recipe data={rec} />
+                                <button id={"b" + index} className="recipeButton" onClick={this.removeRecipe}>Delete</button><button className="recipeButton">Edit</button>
+                                { this.state.recipeForm ? <RecipeForm name="Edit Recipe" onSubmit={this.addRecipe} closeM = {this.closeForm} addN={this.addName} addI={this.addIngredients}/> : null}
+                            </div>
                         ))
                     }
                 </div>
-                <button onClick={this.showForm}>Add Recipe</button>
+                <button className="mainButton" onClick={this.showForm}>Add Recipe</button>
             </div>
         );
     }
