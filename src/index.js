@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import "./css/index.css";
+import Recipe from "./scripts/recipe.js"
 
-class Main extends React.Component {
+class RecipeBox extends React.Component {
     render(){
         return (
-            <h1>Hello World!</h1>
+            <div id="recipebox">
+
+                <Recipe name="Carrot Stew" />
+            </div>
         );
     }
 }
 
 
-ReactDOM.render(<Main />, document.getElementById('root'));
+ReactDOM.render(<RecipeBox />, document.getElementById('root'));

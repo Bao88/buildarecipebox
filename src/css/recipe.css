@@ -1,0 +1,22 @@
+.recipe > * {
+    margin: 0;
+}
+
+.recipe {
+    margin: 10px;
+    text-align: center;
+    border: 2px dotted black;
+    border-radius: 4px;
+    height: auto;
+    /* overflow: hidden; */
+    transition: height 3s linear;
+}
+
+.hideI {
+    /* height: 20px; */
+    overflow: hidden;
+}
+
+.but:focus {
+    height: auto;
+}
