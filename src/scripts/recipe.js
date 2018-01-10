@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import "../css/recipe.css";
 
 class Ingredient extends React.Component {
+    
+    addIngredients(name){
+
+    }
 
     render(){
         return (
@@ -11,10 +15,16 @@ class Ingredient extends React.Component {
     }
 }
 class Recipe extends React.Component {
+    state = {list: []};
+
+    addIngredients(name){
+        this.setState({list: []});
+    }
+
     render() {
         return (
             <div className="recipe">
-                <button className="but">{this.props.name}</button>
+                <div className="titleS">{this.props.name}</div>
                 <h3 className="hideI">Ingredients
                     <Ingredient name="Carrot"/>
                 </h3>

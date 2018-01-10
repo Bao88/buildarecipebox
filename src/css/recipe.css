@@ -13,10 +13,43 @@
 }
 
 .hideI {
-    /* height: 20px; */
-    overflow: hidden;
+    /* display: none; */
+    /* overflow: hidden; */
+    /* opacity: 0; */
+    /* transition: opacity 1s ease-in-out; */
+    /* max-height: 0; */
+    /* transition: max-height 2s cubic-bezier(0, 1, 0, 1); */
+    /* overflow: hidden; */
 }
 
-.but:focus {
-    height: auto;
+.titleS {
+    font-family: 'Bellefair', serif;
+    font-size: 30px;
+    
 }
+
+button {
+    /* background: rgba(0, green, blue, 0.5); */
+    outline: none;
+    border: none;
+    /* width: 100%; */
+    font-family: 'Bellefair', serif;
+    font-size: 30px;
+    width: 160px;
+    border-radius: 20px;
+    box-shadow: 5px 5px;
+    /* margin-left: 35vw; */
+    
+}
+
+button:active {
+    background: grey;
+    /* opacity: 0.5; */
+}
+
+/* .but:focus + .hideI { */
+    /* display: block; */
+    /* animation: open 2s forwards; */
+    /* max-height: 1000px; */
+    /* transition: max-height 2s ease-in-out; */
+/* } */

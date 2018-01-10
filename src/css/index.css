@@ -24,5 +24,56 @@ body {
   width: 80vw;
   background-color: lightskyblue;
   border-radius: 5px;
+  box-shadow: 5px 5px;
+}
+
+#form {
+  position: absolute;
+  left: 50vw;
+  margin-left: -20vw;
+  height: 40vh;
+  width: 40vw;
+  background: lightskyblue;
+  border-radius: 10px;
+  border: 3px dotted black;
+  z-index: 1;
+}
+
+form div, h1 {
+  text-align: center;
+  font-size: 30px;
+  /* margin-top: 50px; */
+}
+
+#recipebox {
+  min-height: 100px;
   
+  /* display: flex; */
+  /* justify-content: center; */
+}
+
+input {
+  width: 30vw;
+  height: 20px;
+  margin-left: 5vw;
+  border-radius: 10px;
+  text-align: center;
+}
+ 
+textarea {
+  width: 30vw;
+  height: 60px;
+  margin-left: 5vw;
+  border-radius: 10px;
+  outline: none;
+} 
+
+#overlay {
+  display: none;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
 }
