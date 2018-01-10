@@ -33,13 +33,20 @@ class RecipeBox extends React.Component {
         name: "",
         list: [],
         showform: false,
-        showRecipes: []
+        showRecipes: [{name: "Carrot Stew", ingr: ["Carrot", "Water"]}]
     };
 
     addRecipe = (event) => {
         // alert(event.target);
+        var object = {name: this.state.name, ingr: this.state.list};
+        var tmpArray = this.state.list.slice();
+        tmpArray.push(object);
+        this.setState({showRecipes: tmpArray});
+        
+        // Reset the fields
         event.target.reset();
         event.preventDefault();
+        console.log(Object.keys(this.state.showRecipes));
     }
 
     addName = (event) => {
@@ -64,11 +71,22 @@ class RecipeBox extends React.Component {
     }
 
     render(){
+        // const myArray = Array.from(this.state.showRecipes);
+        // console.log(this.state.showRecipes);
+        // const myList = myArray.map((ob, index) =>
+        //     <Recipe name={ob.name} />
+        // );
+
         return (
             <div>
                 { this.state.showform ? <RecipeForm onSubmit={this.addRecipe} closeM = {this.closeForm} addN={this.addName} addI={this.addIngredients}/> : null}
-                <div id="recipebox">
-                    <Recipe name="Carrot Stew" />
+                <div id="recipebox">   
+                    {/* <Recipe data={rec}/> */}
+                    {
+                        this.state.showRecipes.map((rec) => (
+                            <Recipe data={rec} />
+                        ))
+                    }
                 </div>
                 <button onClick={this.showForm}>Add Recipe</button>
             </div>

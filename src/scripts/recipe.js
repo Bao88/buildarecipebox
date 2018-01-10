@@ -22,13 +22,19 @@ class Recipe extends React.Component {
     }
 
     render() {
+        console.log("Recipe ");
+
         return (
             <div className="recipe">
-                <div className="titleS">{this.props.name}</div>
+                <div className="titleS">{this.props.data.name}</div>
                 <h3 className="hideI">Ingredients
-                    <Ingredient name="Carrot"/>
+                    {/* <Ingredient name="Carrot"/> */}
                 </h3>
-
+                {
+                    this.props.data.ingr.map((i) => (
+                        <p>{i}</p>
+                    ))
+                }
             </div>
         );
     }
