@@ -41,13 +41,16 @@ class RecipeBox extends React.Component {
             list: [],
             showform: false,
             showRecipes: storage,
-            recipeForm: false
+            recipeForm: false,
+            edit: 0
         };
     }
    
 
     addRecipe = (event) => {
-        // alert(event.target);
+        event.preventDefault();
+        if(this.state.name.length == 0) return;
+
         var object = {name: this.state.name, ingr: this.state.list};
         var tmpArray = this.state.showRecipes;
         tmpArray.push(object);
@@ -55,10 +58,10 @@ class RecipeBox extends React.Component {
         
 // save to localStorage
         localStorage.setItem("recipe", JSON.stringify(tmpArray));
-
+        this.setState({name: "", ingr: []});
         // Reset the fields
         event.target.reset();
-        event.preventDefault();
+        
         console.log(tmpArray);
         console.log(this.state.showRecipes);
     }
@@ -85,16 +88,22 @@ class RecipeBox extends React.Component {
     }
 
     removeRecipe = (event) => {
-        // var object = {name: this.state.name, ingr: this.state.list};
         var tmpArray = this.state.showRecipes;
         tmpArray.splice(event.target.id.charAt(1), 1);
         this.setState({showRecipes: tmpArray});
-        
+
 // update localStorage
         localStorage.setItem("recipe", JSON.stringify(tmpArray));
+    }
 
-        console.log(event.target.id.charAt(1));
+    editIngredients = (event) => {
+        this.setState({edit: event.target.id.charAt(1)});
         
+        console.log(this.state.edit);
+    }
+
+    editRecipe = () => {
+
     }
 
     render(){
@@ -106,8 +115,8 @@ class RecipeBox extends React.Component {
                         this.state.showRecipes.map((rec, index) => (
                             <div className="recipe" key={index} >
                                 <Recipe data={rec} />
-                                <button id={"b" + index} className="recipeButton" onClick={this.removeRecipe}>Delete</button><button className="recipeButton">Edit</button>
-                                { this.state.recipeForm ? <RecipeForm name="Edit Recipe" onSubmit={this.addRecipe} closeM = {this.closeForm} addN={this.addName} addI={this.addIngredients}/> : null}
+                                <button id={"b" + index} className="recipeButton" onClick={this.removeRecipe}>Delete</button><button id={"r" + index} className="recipeButton" onClick={this.editIngredients}>Edit</button>
+                                { this.state.recipeForm ? <RecipeForm name="Edit Recipe" onSubmit={this.editRecipe} closeM = {this.closeForm} addN={this.addName} addI={this.addIngredients}/> : null}
                             </div>
                         ))
                     }
