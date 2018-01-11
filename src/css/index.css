@@ -27,7 +27,7 @@ body {
   box-shadow: 5px 5px;
 }
 
-#form {
+.form1 {
   position: absolute;
   left: 50vw;
   margin-left: -20vw;
@@ -39,6 +39,7 @@ body {
   z-index: 1;
 }
 
+
 form div, h1 {
   text-align: center;
   font-size: 30px;
@@ -47,12 +48,9 @@ form div, h1 {
 
 #recipebox {
   min-height: 100px;
-  
-  /* display: flex; */
-  /* justify-content: center; */
 }
 
-input {
+.form1 input {
   width: 30vw;
   height: 20px;
   margin-left: 5vw;
@@ -60,7 +58,7 @@ input {
   text-align: center;
 }
  
-textarea {
+.form1 textarea {
   width: 30vw;
   height: 60px;
   margin-left: 5vw;
@@ -89,7 +87,6 @@ textarea {
   border-radius: 20px;
   box-shadow: 5px 5px;
   /* margin-left: 35vw; */
-  
 }
 
 .mainButton:active {
@@ -98,5 +95,6 @@ textarea {
 }
 
 .recipeButton {
-
+  border-radius: 10px;
+  font-family: inherit;
 }

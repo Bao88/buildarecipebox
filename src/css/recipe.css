@@ -7,10 +7,11 @@
     text-align: center;
     border: 2px dotted black;
     border-radius: 4px;
-    height: auto;
-    /* overflow: hidden; */
-    transition: height 3s linear;
+    /* height: 35px; */
+    overflow: hidden;
+    transition: height 1s linear;
 }
+
 
 .hideI {
     /* display: none; */
@@ -25,10 +26,37 @@
 .titleS {
     font-family: 'Bellefair', serif;
     font-size: 30px;
-    
 }
 
+.form2 {
+    position: absolute;
+    left: 50vw;
+    top: 43vh;
+    margin-left: -20vw;
+    margin-top: -20vh;
+    height: 40vh;
+    width: 40vw;
+    background: lightskyblue;
+    border-radius: 10px;
+    border: 3px dotted black;
+    z-index: 1;
+}
 
+.form2 input {
+    width: 30vw;
+    height: 20px;
+    margin-left: 0;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+.form2 textarea {
+    margin-left: 0;
+    width: 30vw;
+    height: 60px;
+    border-radius: 10px;
+    outline: none;
+}
 
 /* .but:focus + .hideI { */
     /* display: block; */

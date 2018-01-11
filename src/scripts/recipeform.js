@@ -10,7 +10,7 @@ class RecipeForm extends React.Component {
     }
     render() {
         return (
-            <form onSubmit={this.props.onSubmit} id="form">
+            <form onSubmit={this.props.onSubmit} id="form" className={this.props.className}>
                 <h1>{this.props.name}</h1>
                 <label>
                     <div>

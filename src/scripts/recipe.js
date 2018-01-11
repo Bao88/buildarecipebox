@@ -10,7 +10,8 @@ class Recipe extends React.Component {
             name: props.data.name, 
             list: props.data.ingr, 
             recipeForm: false,
-            showStore: true
+            showStore: true,
+            showIngr: true
         };
     }
 
@@ -29,14 +30,22 @@ class Recipe extends React.Component {
 
     showRecipeForm = (event) => {
         this.setState({recipeForm: true});
+        document.getElementById("overlay").style.display = "block";
     }
 
     closeForm = () => {
         this.setState({recipeForm: false});
+        document.getElementById("overlay").style.display = "none";
+    }
+
+    open = () => {
+        var tmp = this.state.showIngr;
+        this.setState({showIngr: !tmp});
     }
     render() {
         return (
-            <div className="recipe" style={{display: this.state.showStore ? 'block' : 'none' }}>
+            <div className="recipe" style={{display: this.state.showStore ? 'block' : 'none',
+                                            height: this.state.showIngr ? "35px": "auto"}} onClick={this.open} >
                 <div className="titleS">{this.state.name}</div>
                 <h3 className="hideI">Ingredients
                     {/* <Ingredient name="Carrot"/> */}
@@ -49,7 +58,7 @@ class Recipe extends React.Component {
                 <button className="recipeButton" onClick={this.props.rm}>Delete</button>
                 <button className="recipeButton" onClick={this.showRecipeForm}>Edit</button>
                 {
-                    this.state.recipeForm ? <RecipeForm id={this.props.rID} name="Edit Recipe" rName={this.state.name} list={this.state.list} onSubmit={this.editRecipe} closeM = {this.closeForm}/> : null
+                    this.state.recipeForm ? <RecipeForm className="form2" val="Edit" id={this.props.rID} name="Edit Recipe" rName={this.state.name} list={this.state.list} onSubmit={this.editRecipe} closeM = {this.closeForm}/> : null
                 }
             </div>
         );

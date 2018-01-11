@@ -73,12 +73,6 @@ class RecipeBox extends React.Component {
         localStorage.setItem("recipe", JSON.stringify(tmpArray));
     }
 
-    editIngredients = (event) => {
-        
-        
-        // console.log(this.state.edit);
-    }
-
     editRecipe = (event, id) => {
         // console.log(event.target.elements[0].value);
         // event.preventDefault();
@@ -123,7 +117,7 @@ class RecipeBox extends React.Component {
     render(){
         return (
             <div>
-                { this.state.showform ? <RecipeForm val="Add Recipe" name="Add a Recipe" onSubmit={this.addRecipe} closeM = {this.closeForm} addN={this.addName} addI={this.addIngredients}/> : null}
+                { this.state.showform ? <RecipeForm className="form1"  val="Add Recipe" name="Add a Recipe" onSubmit={this.addRecipe} closeM = {this.closeForm} addN={this.addName} addI={this.addIngredients}/> : null}
                 <div id="recipebox">   
                     {
                         this.state.showRecipes.map((rec, index) => (
