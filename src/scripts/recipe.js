@@ -1,39 +1,55 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import "../css/recipe.css";
-
-class Ingredient extends React.Component {
-    
-    addIngredients(name){
-
-    }
-
-    render(){
-        return (
-            <p>{this.props.name}</p>
-        );
-    }
-}
+import RecipeForm from "./recipeform.js";
 class Recipe extends React.Component {
-    state = {list: []};
-
-    addIngredients(name){
-        this.setState({list: []});
+    constructor(props){
+        super(props);
+        this.state = {
+            id: props.rID,
+            name: props.data.name, 
+            list: props.data.ingr, 
+            recipeForm: false,
+            showStore: true
+        };
     }
 
-    render() {
-        console.log("Recipe ");
+    removeRecipe = (event) => {
+        this.setState({showStore: false});
+    }
 
+    editRecipe = (event) => {
+        event.preventDefault();
+        this.setState({
+            name: event.target.elements[0].value,
+            list: event.target.elements[1].value.split(",")
+        });
+        this.props.rmPar(event, this.state.id);
+    }
+
+    showRecipeForm = (event) => {
+        this.setState({recipeForm: true});
+    }
+
+    closeForm = () => {
+        this.setState({recipeForm: false});
+    }
+    render() {
         return (
-            <div>
-                <div className="titleS">{this.props.data.name}</div>
+            <div className="recipe" style={{display: this.state.showStore ? 'block' : 'none' }}>
+                <div className="titleS">{this.state.name}</div>
                 <h3 className="hideI">Ingredients
                     {/* <Ingredient name="Carrot"/> */}
                 </h3>
                 {
-                    this.props.data.ingr.map((i, index) => (
+                    this.state.list.map((i, index) => (
                         <p key={index}>{i}</p>
                     ))
+                }
+                <button className="recipeButton" onClick={this.props.rm}>Delete</button>
+                <button className="recipeButton" onClick={this.showRecipeForm}>Edit</button>
+                {
+                    this.state.recipeForm ? <RecipeForm id={this.props.rID} name="Edit Recipe" rName={this.state.name} list={this.state.list} onSubmit={this.editRecipe} closeM = {this.closeForm}/> : null
                 }
             </div>
         );
